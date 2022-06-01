@@ -33,18 +33,48 @@ console.log(averageOfAnArray(coachesArr));
 // SPOT THE DIFFERENCE 
 // EXAMPLE INPUT -> ["spray", "limit", "disco", "exuberant", "destruction", "present"];
 // EXPECTED OUTPUT -> ["exuberant", "destruction", "present"]
+const stringArr = ["spray", "limit", "disco", "exuberant", "destruction", "present"];
+const spotTheDifference = (array) => {
+    return array.filter(string => string.length > 5)
+    //return array.filter(string => string.includes("e"))
+}
+
+console.log(spotTheDifference(stringArr));
 
 // DISCO SHOES
 // EXAMPLE INPUT -> ["please camel", "join casing", "these disco", "with shoes"];
 // EXPECTED OUTPUT -> ["pleaseCamel", "joinCasing", "theseDisco", "withShoes"]
+const discoShoesArr = ["please camel", "join casing", "these disco", "with shoes"];
+const makeArrCamelCase = (array) => {
+    return array.map((string) => {
+        let camelArr = string.split(" ");
+        return camelArr[0]+ camelArr[1].charAt(0).toUpperCase() + camelArr[1].slice(1)
+    })
+}
+
+console.log(makeArrCamelCase(discoShoesArr))
 
 // SCRABBLE
 // EXAMPLE INPUT -> [{ letter: "a", value: 1}, { letter: "k", value: 5}, { letter: "c", value: 3}];
 // EXPECTED OUTPUT -> 9
+const scrabbleArr = [{ letter: "a", value: 1}, { letter: "k", value: 5}, { letter: "c", value: 3}];
+
+const getScrabbleScore = array => {
+    const totalObj = array.reduce((runningTotal, currentVal) => ({ value : runningTotal.value + currentVal.value}))
+    return totalObj.value
+}
+console.log(getScrabbleScore(scrabbleArr))
 
 // MI TO KM
 // EXAMPLE INPUT -> = [10, 5];
 // EXPECTED OUTPUT -> { convertedKM:[16.0934, 8.04672], totalKM: 24.14012 }
+const milesArr = [10, 5];
+const convertMilesToKm = array => {
+    const convertedToKmArr = array.map(miles => miles * 1.609)
+    const totalkmArr = convertedToKmArr.reduce((runningTotal, currentVal) => runningTotal + currentVal)
+    return { convertedKM : convertedToKmArr, totalKM : totalkmArr}
+}
+console.log(convertMilesToKm(milesArr))
 
 // FILTER FOOD
 // EXAMPLE INPUT -> [
@@ -73,3 +103,22 @@ console.log(averageOfAnArray(coachesArr));
 //   { img: "🌯", name: "burrito", foodType: "healthy" },
 //   { img: "🥣", name: "soup", foodType: "healthy" },
 // ]
+const foodArr = [
+  { img: "🍕", name: "pizza", foodType: "junk" },
+  { img: "🍔", name: "burger", foodType: "junk" },
+  { img: "🍟", name: "fries", foodType: "junk" },
+  { img: "🌭", name: "hot dog", foodType: "junk" },
+  { img: "🥗", name: "salad", foodType: "healthy" },
+  { img: "🥙", name: "pita", foodType: "healthy" },
+  { img: "🥪", name: "sandwich", foodType: "healthy" },
+  { img: "🌯", name: "burrito", foodType: "healthy" },
+  { img: "🥣", name: "soup", foodType: "healthy" },
+ ];
+
+ const filterByFoodType = (array, foodType) => {
+     if(foodType === "junk") {
+         return array.filter(obj => obj.includes("junk"))
+     }else if (foodType === "healthy"){
+         return array.filter(obj => obj.includes("healthy"))
+     }
+ }
