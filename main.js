@@ -116,9 +116,42 @@ const foodArr = [
  ];
 
  const filterByFoodType = (array, foodType) => {
-     if(foodType === "junk") {
-         return array.filter(obj => obj.includes("junk"))
-     }else if (foodType === "healthy"){
-         return array.filter(obj => obj.includes("healthy"))
-     }
+    return foodType === "junk" ? array.filter(obj => obj.foodType === "junk") : array.filter(obj => obj.foodType === "healthy")
  }
+
+console.log(filterByFoodType(foodArr, "junk"))
+console.log(filterByFoodType(foodArr, "healthy"))
+
+//WE CAN BE HEROS
+// EXAMPLE INPUT -> [
+//  { name: "Spider-Man" },
+//  { name: "Thor" },
+//  { name: "Black Panther" },
+//  { name: "Captain Marvel" },
+//  { name: "Silver Surfer" },
+// ];
+
+// EXPECTED OUTPUT -> [
+//   { id: 0, hero: "Spider-Man", power: 1 },
+//   { id: 1, hero: "Thor", power: 9 },
+//   { id: 2, hero: "Black Panther", power: 10 },
+//   { id: 3, hero: "Captain Marvel", power: 8 },
+//   { id: 4, hero: "Silver Surfer", power: 2 },
+// ];
+
+const herosArr = [
+  { name: "Spider-Man" },
+  { name: "Thor" },
+  { name: "Black Panther" },
+  { name: "Captain Marvel" },
+  { name: "Silver Surfer" },
+ ];
+
+const getHeroPowerObj = array => {
+    const arrayOfNames = array.map(obj => obj.name)
+    return arrayOfNames.map((hero, index) => {
+        let random = Math.floor(Math.random(1)* 100)
+        return {id: index, name: hero, power: random}
+    });
+}
+console.log(getHeroPowerObj(herosArr))
